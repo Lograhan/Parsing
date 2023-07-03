@@ -8,7 +8,6 @@ class Vacancy:
     def __str__(self):
         return f'{self.name}, {self.__url}, {self.__zp}'
 
-
     @property
     def url(self):
         return self.__url
@@ -38,5 +37,3 @@ class Vacancy:
 
     def __gt__(self, other):
         return self.__zp > other.__zp
-
-
