@@ -2,6 +2,7 @@ import csv
 import json
 
 from data.full_vac import Vacancy
+from data.file_manager import File_manager
 
 
 def printj(dict_to_print: dict) -> None:
@@ -11,17 +12,13 @@ def printj(dict_to_print: dict) -> None:
 
 def all_vacancy():
     all_vac = []
-    with open('save_file/hh.ru.json', 'r', encoding='utf-8') as file:
-        data = json.load(file)
-
-    for vacancy in data:
+    data_hh = File_manager.open_file('save_file/hh.ru.json')
+    for vacancy in data_hh:
         vac = Vacancy(vacancy['name'], vacancy['alternate_url'], vacancy['salary']['from'])
         all_vac.append(vac)
 
-    with open('save_file/sj.ru.json', 'r', encoding='utf-8') as file:
-        data = json.load(file)
-
-    for i in data:
+    data_sj = File_manager.open_file('save_file/sj.ru.json')
+    for i in data_sj:
         vac = Vacancy(i['profession'], i['link'], i['payment_from'])
         all_vac.append(vac)
 

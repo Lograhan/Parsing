@@ -1,17 +1,22 @@
-
-import json
-
+from data.file_manager import File_manager
 from data.abs_class import Api
 import requests
 
 
-class HH_api(Api):
+class HH_api(Api, File_manager):
+    """
+    Класс для работы с HH.ru. В атрибут принимает желаемую профессию.
+    """
     def __init__(self, keyword, page=0):
         self.par = {
             'text': keyword,
             'page': page}
 
     def get_api(self):
+        """
+        Метод для получения списка вакансий.
+        Возвращает отсортированный список, в котором исключены вакансии без ЗП, и в качестве валюты указаны RUR
+        """
         data = requests.get('https://api.hh.ru/vacancies', self.par).json()
         all_vac = []
         for i in data['items']:
@@ -24,10 +29,6 @@ class HH_api(Api):
 
         all_vac.sort(key=lambda x: x['salary']['from'], reverse=True)
         return all_vac
-
-    def hh_save_file(self):
-        with open('save_file/hh.ru.json', 'w', encoding='utf-8') as file:
-            file.write(json.dumps(HH_api.get_api(self)))
 
 
 

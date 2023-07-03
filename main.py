@@ -1,8 +1,9 @@
 import sys
 
-from data.func import all_vacancy, create_file_csv, clear_file_csv, print_top_vac
+from data.func import create_file_csv, clear_file_csv, print_top_vac
 from data.class_hh import HH_api
 from data.class_superjob import SuperJ
+from data.file_manager import File_manager
 
 
 def main():
@@ -14,13 +15,13 @@ def main():
         clear_file_csv()
         print('файл успешно очищен')
 
-    keyword = input('Введите профессию: ')
+    keyword = 'python'  # input('Введите профессию: ')
 
     hh = HH_api(keyword)
     sj = SuperJ(keyword)
 
-    hh_file = hh.hh_save_file()
-    sj_file = sj.sj_save_file()
+    hh_file = File_manager.add_vac('save_file/hh.ru.json', hh.get_api())
+    sj_file = File_manager.add_vac('save_file/sj.ru.json', sj.get_api())
 
     print(f'\nДанные по ключевому слову "{keyword}" собраны!')
     print('Для отображения всего списка вакансий нажмите "Enter"'
