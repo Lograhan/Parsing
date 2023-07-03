@@ -17,7 +17,7 @@ class SuperJ(Api, File_manager):
     def get_api(self):
         """
         Метод для получения данных.
-        Возвращает отсортированный
+        Возвращает отсортированный по ЗП список, от большей к меньшей.
         """
         data = requests.get("https://api.superjob.ru/2.0/vacancies/", headers=self.headers, params=self.par).json()
         all_vac = []
@@ -32,10 +32,4 @@ class SuperJ(Api, File_manager):
 # printj(sj.get_api()['objects'][0]['link']) # url
 # printj(sj.get_api()['objects'][0]['candidat']) # opisanie
 # printj(sj.get_api()['objects'][0]['payment_from']) # zp
-
-
-
-
-# with open('../save_file/sj.ru.json', 'r', encoding="utf-8") as file:
-#     data = json.load(file)
 

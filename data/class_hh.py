@@ -7,6 +7,7 @@ class HH_api(Api, File_manager):
     """
     Класс для работы с HH.ru. В атрибут принимает желаемую профессию.
     """
+
     def __init__(self, keyword, page=0):
         self.par = {
             'text': keyword,
@@ -29,8 +30,6 @@ class HH_api(Api, File_manager):
 
         all_vac.sort(key=lambda x: x['salary']['from'], reverse=True)
         return all_vac
-
-
 
 # def name(self):
 #     self.name = HH_api.get_api(self)['items'][0]['name']  # наименование вакансии

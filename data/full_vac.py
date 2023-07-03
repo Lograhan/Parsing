@@ -1,6 +1,10 @@
 class Vacancy:
+    """
+    Класс для работы с вакансиями.
+    В атрибут принимает Имя вакансии, ссылку на вакансию и ЗП.
+    """
 
-    def __init__(self, name, url, zp, ):
+    def __init__(self, name, url, zp, ) -> None:
         self.__name = name
         self.__url = url
         self.__zp = zp

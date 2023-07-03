@@ -15,7 +15,7 @@ def main():
         clear_file_csv()
         print('файл успешно очищен')
 
-    keyword = 'python'  # input('Введите профессию: ')
+    keyword = input('Введите профессию: ')
 
     hh = HH_api(keyword)
     sj = SuperJ(keyword)
